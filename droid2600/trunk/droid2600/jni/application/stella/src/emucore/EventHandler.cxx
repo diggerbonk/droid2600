@@ -2181,7 +2181,7 @@ void EventHandler::setEventState(State state)
 
   // Inform various subsystems about the new state
   myOSystem->stateChanged(myState);
-  if(&myOSystem->frameBuffer())
+  if(myOSystem->frameBufferExists())
     myOSystem->frameBuffer().stateChanged(myState);
 
   // Always clear any pending events when changing states

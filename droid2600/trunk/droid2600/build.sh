@@ -10,14 +10,14 @@
 #     i install only
 #     clean
 
-export PATH=$PATH:~/soft/android-ndk
-DROIDSDL_DIR=../droidSDL
+export PATH=$PATH:~/soft/android-ndk:/home/trent/soft/android-sdk/build-tools/25.0.2
+DROIDSDL_DIR=../../../droidSDL/trunk/droidSDL
 KEYSTORE=../../droid2600.keystore
 
 function checkDroidSDLVersion() {
     REQUIRED_VERSION=`cat ./droidsdl.version`
     CHECK_STRING="android:versionName=\"$REQUIRED_VERSION\""
-    OUTPUT=`grep "$CHECK_STRING" ../droidSDL/AndroidManifest.xml`
+    OUTPUT=`grep "$CHECK_STRING" ${DROIDSDL_DIR}/AndroidManifest.xml`
     if [ "$OUTPUT" == "" ]; then
         echo "Requires DroidSDL v$REQUIRED_VERSION"
         echo "Check that ./droidsdl.version and ../droidSDL/AndroidManifest.xml are set correctly"
@@ -69,15 +69,15 @@ function jcompile {
 }
 
 function signApp {
-    rm bin/Droid2600.apk
-    jarsigner -verbose -keystore $KEYSTORE bin/Droid2600-unsigned.apk droid2600
-    jarsigner -verify bin/Droid2600-unsigned.apk
-    zipalign -v 4 bin/Droid2600-unsigned.apk bin/Droid2600.apk
+    rm bin/Droid2600-release.apk
+    jarsigner -sigalg MD5withRSA -digestalg SHA1 -tsa http://timestamp.digicert.com -verbose -keystore $KEYSTORE bin/Droid2600-release-unsigned.apk droid2600
+    jarsigner -verify bin/Droid2600-release-unsigned.apk
+    zipalign -v 4 bin/Droid2600-release-unsigned.apk bin/Droid2600-release.apk
 }
 
 function installApp {
     #adb -d uninstall com.droid2600
-    adb -d install  -r bin/Droid2600.apk
+    /home/trent/soft/android-sdk/platform-tools/adb  install  -r bin/Droid2600-release.apk
 }
 
 function showHelp {
