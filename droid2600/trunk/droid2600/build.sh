@@ -11,6 +11,7 @@
 #     clean
 
 export PATH=$PATH:~/soft/android-ndk
+export PATH=$PATH:/home/trent/soft/android-sdk/build-tools/25.0.2/
 DROIDSDL_DIR=../droidSDL
 KEYSTORE=../../droid2600.keystore
 
@@ -70,9 +71,9 @@ function jcompile {
 
 function signApp {
     rm bin/Droid2600.apk
-    jarsigner -verbose -keystore $KEYSTORE bin/Droid2600-unsigned.apk droid2600
-    jarsigner -verify bin/Droid2600-unsigned.apk
-    zipalign -v 4 bin/Droid2600-unsigned.apk bin/Droid2600.apk
+    jarsigner -verbose -keystore $KEYSTORE bin/Droid2600-release-unsigned.apk droid2600
+    jarsigner -verify bin/Droid2600-release-unsigned.apk
+    zipalign -v 4 bin/Droid2600-release-unsigned.apk bin/Droid2600.apk
 }
 
 function installApp {
