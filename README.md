@@ -19,3 +19,6 @@ available on google code.
    are packed with with, I ended up pointing to one in a newer SDK:
 
    export PATH=$PATH:/home/trent/soft/android-sdk/build-tools/25.0.2/
+
+   # in teh following file i had to update the java version
+   $ vi /home/trent/soft/android-sdk/tools/ant/build.xml
