@@ -13,7 +13,7 @@
 export PATH=$PATH:~/soft/android-ndk
 export PATH=$PATH:/home/trent/soft/android-sdk/build-tools/25.0.2/
 DROIDSDL_DIR=../droidSDL
-KEYSTORE=../../droid2600.keystore
+KEYSTORE=droid2600.keystore
 
 function checkDroidSDLVersion() {
     REQUIRED_VERSION=`cat ./droidsdl.version`
