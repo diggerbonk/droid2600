@@ -4,6 +4,12 @@
 ##     1. Change 1            ##
 ##     2. Change 2 ...        ##
 
+December 14, 2024 
+
+    1. Moved source code to github
+    2. Minor changes to (barely) compile in this modern world
+    3. Added uses-permissions for filesystem access
+
 February 1, 2011 (17) DROID2600_17
 
     1. Removed some cruft from preferences code
