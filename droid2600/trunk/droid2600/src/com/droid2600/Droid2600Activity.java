@@ -188,7 +188,7 @@ public class Droid2600Activity extends Activity {
                     // if a rom has been selected, run the emulator, otherwise 
                     // run the rom chooser.
                     if (null == _romPath) {
-                        doFindRom();
+                        doPreferences();
                     }
                     else {
                         doStartEmulator();

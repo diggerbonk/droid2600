@@ -90,6 +90,7 @@ function showHelp {
     echo "    t     : test build (clean, compile, sign, install)"
     echo "    i     : install apk"
     echo "    h     : show this message"
+    echo "    s     : sign app"
 }
 
 checkDroidSDLVersion;
@@ -118,6 +119,9 @@ case "$1" in
         ;;
     i)
         installApp;
+        ;;
+    s)
+        signApp;
         ;;
     *)
         showHelp;

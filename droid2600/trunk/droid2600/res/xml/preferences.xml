@@ -23,13 +23,13 @@
     <PreferenceCategory android:title="Display Settings">
         <!-- set the screen orientation -->
         <CheckBoxPreference
-                android:defaultValue="true"
+                android:defaultValue="false"
                 android:key="landscape"
                 android:title="Landscape mode"
                 android:summary="Run in landscape mode, otherwise use portrait" />
         <!-- preserve screen aspect ratio -->
         <CheckBoxPreference
-                android:defaultValue="true"
+                android:defaultValue="false"
                 android:key="stretchtofit"
                 android:title="Stretch to fill window"
                 android:summary="Stretch the emulated screen to fill the entire window" />
@@ -65,7 +65,7 @@
             android:dialogTitle="On Screen Control Layout"/>
         <!-- On-screen size -->
         <ListPreference
-            android:defaultValue="1"
+            android:defaultValue="2"
             android:key="touchpadJoystickSize"
             android:title="On Screen Controls Size"
             android:summary="On Screen Controls Size"
