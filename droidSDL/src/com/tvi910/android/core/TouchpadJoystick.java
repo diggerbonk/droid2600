@@ -304,6 +304,7 @@ public class TouchpadJoystick extends VirtualController {
                     event.getY(pointerIndex));
             }
             case MotionEvent.ACTION_POINTER_UP: {
+                Log.i("TouchpadJoystick", "POINTER UP: " + event);
                 // Extract the index of the pointer that left the touch sensor
                 final int pointerIndex = (action & MotionEvent.ACTION_POINTER_INDEX_MASK)
                         >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;

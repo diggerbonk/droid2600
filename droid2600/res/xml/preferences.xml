@@ -65,7 +65,7 @@
             android:dialogTitle="On Screen Control Layout"/>
         <!-- On-screen size -->
         <ListPreference
-            android:defaultValue="2"
+            android:defaultValue="1"
             android:key="touchpadJoystickSize"
             android:title="On Screen Controls Size"
             android:summary="On Screen Controls Size"

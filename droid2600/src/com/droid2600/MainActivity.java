@@ -410,6 +410,7 @@ public class MainActivity extends Activity {
                 break;
         }
 
+        Log.i("MainActivity", "setting up TouchpadJoystick layoutOnTop=" + layoutOnTop + ", buttonsOnLeft=" + buttonsOnLeft + ", display width=" + display.getWidth() + ", display height=" + display.getHeight() + ", buttonSize=" + sz);
         _touchpadJoystick  = new TouchpadJoystick(
             this, layoutOnTop, buttonsOnLeft,
             display.getWidth(), display.getHeight(), sz);
@@ -520,17 +521,18 @@ public class MainActivity extends Activity {
         }
     }
 
-	@Override
-	public boolean dispatchTouchEvent(final MotionEvent ev) {
+    @Override
+    public boolean dispatchTouchEvent(final MotionEvent ev) {
         if (!super.dispatchTouchEvent(ev)) {
-		    if(_touchpadJoystick.getIsActive()) {
-			    boolean ret = _touchpadJoystick.onTouchEvent(ev);
+            if(_touchpadJoystick.getIsActive()) {
+                //Log.v("MainActivity.dispatchTouchEvent", "event=" + ev);
+                boolean ret = _touchpadJoystick.onTouchEvent(ev);
                 // if we don't sleep here we get way to many motion events.
                 sleep();
                 return ret;
             }
             else if (_touchPaddle.getIsActive()) {
-			    boolean ret = _touchPaddle.onTouchEvent(ev);
+                boolean ret = _touchPaddle.onTouchEvent(ev);
                 // if we don't sleep here we get way to many motion events.
                 sleep();
                 return ret;
@@ -559,7 +561,7 @@ public class MainActivity extends Activity {
         else {
             return true;
         }
-	}
+    }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {

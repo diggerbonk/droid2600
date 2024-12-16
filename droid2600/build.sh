@@ -27,6 +27,7 @@ function checkDroidSDLVersion() {
 }
 
 function cleanProject() {
+    rm -rf ../droidSDL/bin/ ../droidSDL/gen/ 
     rm -rf bin gen obj libs
 }
 
