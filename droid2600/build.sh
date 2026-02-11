@@ -10,8 +10,9 @@
 #     i install only
 #     clean
 
+#export PATH=$PATH:/home/trent/Android/Sdk/ndk/16.1.4479499/
 export PATH=$PATH:~/soft/android-ndk
-export PATH=$PATH:/home/trent/soft/android-sdk/build-tools/25.0.2/
+export PATH=$PATH:/home/trent/soft/android-sdk/build-tools/25.0.2/:/home/trent/soft/android-sdk/platform-tools
 DROIDSDL_DIR=../droidSDL
 KEYSTORE=droid2600.keystore
 
@@ -78,7 +79,7 @@ function signApp {
 }
 
 function installApp {
-    #adb -d uninstall com.droid2600
+    adb -d uninstall com.droid2600
     adb -d install  -r bin/Droid2600.apk
 }
 

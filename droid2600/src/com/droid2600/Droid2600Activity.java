@@ -145,9 +145,9 @@ public class Droid2600Activity extends Activity {
                 this, // context
                 atariFont, // custom font
                 2, // number of grid columns
-                1, // number of grid rows
+                2, // number of grid rows
                 50, // percent of desired width fill
-                20, // percent of desired height fill
+                30, // percent of desired height fill
                 50, // x offset (50 = center)
                 75, // y offset (50 = center)
                 3f,
@@ -160,9 +160,9 @@ public class Droid2600Activity extends Activity {
                 this, // context
                 atariFont, // custom font
                 2, // number of grid columns
-                1, // number of grid rows
+                2, // number of grid rows
                 90, // percent of desired width fill
-                15, // percent of desired height fill
+                30, // percent of desired height fill
                 50, // x offset (0 = center)
                 75, // y offset (0 = center)
                 3f,
@@ -188,13 +188,34 @@ public class Droid2600Activity extends Activity {
                     // if a rom has been selected, run the emulator, otherwise 
                     // run the rom chooser.
                     if (null == _romPath) {
-                        doPreferences();
+                        doFindRom();
                     }
                     else {
                         doStartEmulator();
                     }
                 }
             } );
+
+        buttonPanel.setButton(0,1,
+            Color.argb(255, 38, 38, 38),
+            Color.argb(228, 255, 201, 59),
+            "Prefences",
+            new ButtonCallback() {
+                public void onButtonUp() {
+                    doPreferences();
+                }
+            } );
+
+        buttonPanel.setButton(1,1,
+            Color.argb(255, 38, 38, 38),
+            Color.argb(228, 255, 201, 59),
+            "About",
+            new ButtonCallback() {
+                public void onButtonUp() {
+                    doAbout();
+                }
+            } );
+
 
         AbsoluteLayout al = new AbsoluteLayout(this);
         addContentView(al, new ViewGroup.LayoutParams(display.getWidth(),display.getHeight()));

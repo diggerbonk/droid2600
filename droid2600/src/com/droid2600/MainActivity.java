@@ -342,7 +342,7 @@ public class MainActivity extends Activity {
         _virtualControllerManager = new VirtualControllerManager();
 
         _accelerometerJoystick = AccelerometerJoystick.getInstance(this);
-        _touchPaddle = new TouchPaddle(this,getWindowManager().getDefaultDisplay().getHeight());
+        _touchPaddle = new TouchPaddle(this,getWindowManager().getDefaultDisplay().getHeight(), getWindowManager().getDefaultDisplay().getWidth());
         setupTouchpadJoystick();
         _atariKeypad = new AtariKeypad(this, landscapeMode);
         _buttonPanelController = new ButtonPanelController(this, _buttonPanel);
@@ -453,6 +453,18 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, final KeyEvent event) {
+
+         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP){
+            if (_touchPaddle.getIsActive()) {
+                return _touchPaddle.volumeKeyUp();
+            }
+	 }
+	 else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+            if (_touchPaddle.getIsActive()) {
+                return _touchPaddle.volumeKeyDown();
+            }
+         }
+
          int nativeCode = _keymap.translate(keyCode);
          if (nativeCode > 0) {
              SDLInterface.nativeKey(nativeCode, 1);
@@ -581,6 +593,7 @@ public class MainActivity extends Activity {
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        Log.i("MainActivity.onCreateOptions", "creating options menu");
 
         super.onCreateOptionsMenu(menu);
 //        menu.add(0, 1, 0, "Virtual Joystick");

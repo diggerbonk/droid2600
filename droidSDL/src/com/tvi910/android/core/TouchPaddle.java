@@ -47,10 +47,27 @@ public class TouchPaddle extends VirtualController {
     private int _lastY = 0;
 
     private int _verticalScreenCenter;
+    private int _screenHeight;
+    private int _screenWidth;
+    private int _xIncrement = 0;
+    private int _yIncrement = 0;
 
     public TouchPaddle(Context context, int screenHeight) {
         super(context);
         _verticalScreenCenter = screenHeight/2;
+        _screenHeight = screenHeight;
+        _screenWidth = screenHeight;
+        _xIncrement = _screenWidth / 128;
+        _yIncrement = _screenHeight / 128;
+    }
+
+    public TouchPaddle(Context context, int screenHeight, int screenWidth) {
+        super(context);
+        _verticalScreenCenter = screenHeight/2;
+        _screenHeight = screenHeight;
+        _screenWidth = screenWidth;
+        _xIncrement = _screenWidth / 128;
+        _yIncrement = _screenHeight / 128;
     }
 
     private boolean downAction(MotionEvent ev, int pointerId, float x, float y) {
@@ -92,6 +109,36 @@ public class TouchPaddle extends VirtualController {
         else {
             return false;
         }
+    }
+
+    public boolean volumeKeyUp() {
+
+        final int xpos = _lastX + _xIncrement;
+        final int ypos = _lastY + _yIncrement;
+
+        if (xpos < _screenWidth) _lastX = xpos;
+        if (ypos < _screenHeight) _lastY = ypos;
+
+        SDLInterface.nativeMouse(_lastX, _lastY, 0, 0, 0, 0);
+        SDLInterface.nativeMouse(_lastX, _lastY, 2, 0, 0, 0);
+        //SDLInterface.nativeMouse(xpos, ypos, 1, 0, 0, 0);
+
+        return true;
+    }
+
+    public boolean volumeKeyDown() {
+
+        final int xpos = _lastX - _xIncrement;
+        final int ypos = _lastY - _yIncrement;
+
+        if (xpos >= 0) _lastX = xpos;
+        if (ypos >= 0) _lastY = ypos;
+
+        SDLInterface.nativeMouse(_lastX, _lastY, 0, 0, 0, 0);
+        SDLInterface.nativeMouse(_lastX, _lastY, 2, 0, 0, 0);
+        //SDLInterface.nativeMouse(xpos, ypos, 1, 0, 0, 0);
+       
+        return true;
     }
 
     public boolean onTouchEvent(MotionEvent event) {

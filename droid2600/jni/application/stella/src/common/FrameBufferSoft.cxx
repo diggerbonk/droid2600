@@ -102,7 +102,7 @@ bool FrameBufferSoft::setVidMode(VideoMode& mode)
     SDL_UpdateRect(myScreen, 0, 0, 0, 0);
   }
   
-  myScreen = SDL_SetVideoMode(mode.screen_w, mode.screen_h, 0, mySDLFlags);
+  myScreen = SDL_SetVideoMode(mode.screen_w, mode.screen_h, 16, mySDLFlags);
 #ifdef ANDROID
     __android_log_print(ANDROID_LOG_INFO, "FrameBufferSoft::setVidMode",
         "Set video mode to: h=%i w=%i",  mode.screen_h, mode.screen_w); 

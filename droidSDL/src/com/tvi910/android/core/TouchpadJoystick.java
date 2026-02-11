@@ -309,6 +309,7 @@ public class TouchpadJoystick extends VirtualController {
                 final int pointerIndex = (action & MotionEvent.ACTION_POINTER_INDEX_MASK)
                         >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
                 final int pointerId = event.getPointerId(pointerIndex);
+
                 return upAction(event, pointerId);
             }
         }
